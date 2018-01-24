@@ -1,0 +1,33 @@
+{
+  "name": "imp",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "antlr4": "^4.7.0",
+    "jquery": "latest",
+    "mathjs": "^3.17.0",
+    "http-server": "^0.9.0",
+    "monaco-editor": "0.x.x",
+    "midi-writer-js": "1.5.2",
+    "midi-player-js": "^1.1.4",
+    "soundfont-player": "0.10.6",
+    "stringify": "5.2.0",
+    "sec-to-min": "1.0.1"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.2",
+    "browserify": "^14.4.0",
+    "watchify": "latest"
+  },
+  "scripts": {
+    "antlr4-java": "rimraf gen_java && java -cp antlr/antlr-4.7-complete.jar org.antlr.v4.Tool -o gen_java FmnlLexer.g4 FmnlParser.g4 && javac -cp antlr/antlr-4.7-complete.jar gen_java/Fmnl*.java",
+    "antlr4": "rimraf gen && java -cp antlr/antlr-4.7-complete.jar org.antlr.v4.Tool -Dlanguage=JavaScript -o gen -listener -no-visitor FmnlLexer.g4 FmnlParser.g4",
+    "build": "browserify -t [ stringify --extensions [.txt] ] src/main.js -o bundle.js --standalone main -d",
+    "watch": "watchify -t [ stringify --extensions [.txt] ] src/main.js -o bundle.js --standalone main -d -v",
+    "server": "node_modules/.bin/http-server -c-1 ./ -p 8888",
+    "build-deploy": "browserify -t [ stringify --extensions [.txt] ] src/main.js -o bundle.js --standalone main",
+    "deploy-all": "./deploy.sh",
+    "deploy": "aws s3 cp ./bundle.js s3://instant-music-programs --acl \"public-read\" && aws s3 cp ./index.html s3://instant-music-programs --acl \"public-read\"",
+    "deploy-clean": "aws s3 rm s3://instant-music-programs --recursive"
+  }
+}

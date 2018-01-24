@@ -1,0 +1,22 @@
+` The standard library defines some function for you to use.
+
+` </>, <\>, <#>, <b>: apply corresponding pitch modifier.
+export function <pitch-modifiers>(1) = 123 </>(123) <\>(123) <#>(123) <b>(123)
+
+` <reverseN>: reverse an N-list(list of size N)
+export function <use-reverse>(1) = <reverse3>(1, 2, 3) ` = (3, 2, 1)
+
+` <getN>: get N-th element from list
+export function <use-get>(1) = <get0>(1, 2, 3) ` = 1
+
+` <checkN>: cast all elements to list of size N
+export function <use-check>(1) = <check2>(1 (1,2) (1,2,3) [(1,2)]) <check3>((1,2)) ` = (1,1) (1,2) (1,2) ([(1,2)], [(1,2)]) (1,2,1)
+
+` <flattenN>: flatten an N-list into an 1-list
+export function <use-flatten>(1) = <flatten2>(1, 2) ` = 12
+
+` <mergeN>: merge all i-th elements
+export function <use-merge>(1) = <merge2>((1,1-)(2-,2)) ` = (12-, 1-2)
+
+` <inverseN>: shift an N-list
+export function <use-inverse>(1) = <inverse3>(1,2,3) ` = (2,3,1)

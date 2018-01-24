@@ -1,0 +1,22 @@
+` Note is one of three types of ELEMENTs in this language
+
+` Numbers are music notes. 1-7 represent do, re, mi, fa, so, la, ti respectively.
+` You need "1" as a function argument to use 1-7 notation, since 2-7 are actually
+`  predefined to be 2=##1, 3=##2, 4=#3, 5=##4, 6=##5, 7=##6
+export function <notes>(1) = 135
+
+` Make a note sharp with '#'
+export function <with-sharp5>(1) = 13#5
+
+` Make a note flat with 'b'
+export function <with-flat5>(1) = 13b5
+
+` Make a note one higher octave with '/'
+export function <with-higher-octave-5>(1) = 13/5
+
+` Make a note one lower octave with '\'
+export function <with-lower-octave-5>(1) = 13\5
+
+` Except for numbers, capped letters can also be used as note names
+` Following is equivalent to <notes>
+export function <notes-alternative>(X) = X####X#######X

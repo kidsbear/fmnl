@@ -1,0 +1,16 @@
+export function <quarter-notes>(1) = 11
+
+` '-' extends the duration previous note by 1 beat
+export function <half-notes>(1) = 1-1-
+
+` Multiple '-' can stack
+export function <whole-notes>(1) = 1---1---
+
+` Use '.' to extend note length by half
+export function <dot-quarter-notes>(1) = 1.1.
+
+` Subsequent '.'s extend note length by 1/4, 1/8, etc
+export function <double-dot-quarter-notes>(1) = 1..1..
+
+` '-' and '.' can affect the same note
+export function <5/2-beat-notes>(1) = 1-.1-.

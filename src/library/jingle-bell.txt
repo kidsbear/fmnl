@@ -1,0 +1,16 @@
+setting bpm = 130
+setting pitch = 64 ` G4
+
+function <3x->(X) = XXX-
+function <x3->(X) = X---
+function <4x>(X) = XXXX
+function <magic>(1) = \5321 <x3->(\5) \5321 <x3->(\6)
+
+export function <main>(1) = <3x->(33) (351.(-2)) <x3->(3)
+                            <3x->(43) 3221 2-5-
+                            <3x->(33) (351.(-2)) <x3->(3)
+                            <4x>(43) 5542 <x3->(1)
+                            <magic>(1)
+                            \6432 <x3->(\7) 6542 <x3->(3)
+                            <magic>(1)
+                            \6432 <4x>(5) 6542 <x3->(1)

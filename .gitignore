@@ -1,0 +1,5 @@
+.git/.idea/node_modules/
+gen/
+gen_java/
+bundle.js
+*~

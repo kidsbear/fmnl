@@ -1,0 +1,6 @@
+` The program is made up of function definitions
+` Function is made up of "<foo>": function name, "(1)": arguments, "11": body
+function <foo>(1) = 11
+
+` Functions with export keyword will be displayed in the console, and can be played or exported to midi file.
+export function <main>(1) = <foo>(1)

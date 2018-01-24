@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>FMNL console</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://gleitz.github.io/midi-js-soundfonts/MusyngKite/acoustic_grand_piano-mp3.js"></script>
+    <script type="text/javascript">MIDI.mp3 = MIDI.Soundfont.acoustic_grand_piano</script>
+    <script src="https://gleitz.github.io/midi-js-soundfonts/MusyngKite/acoustic_grand_piano-ogg.js"></script>
+    <script type="text/javascript">MIDI.ogg = MIDI.Soundfont.acoustic_grand_piano</script>
+    <script src="/other_modules/lowLag.js"></script>
+    <script src="/other_modules/sm2/js/soundmanager2.js"></script>
+    <script src="bundle.js"></script>
+    <script src="node_modules/monaco-editor/min/vs/loader.js"></script>
+    <script>amdrequire = require;</script>
+    <style type="text/css">
+        body {
+            background: #eff3fb;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Bree Serif', serif;
+        }
+
+        button {
+            font-size: large;
+        }
+
+        #compile {
+            transition: background-color 0.2s;
+        }
+
+        #compile.compile-current {
+            background-color: chartreuse;
+        }
+
+        #compile.compile-waiting {
+            background-color: cyan;
+        }
+
+        #compile.compile-error {
+            background-color: orangered;
+        }
+
+        #play {
+            background-color: #008CBA;
+        }
+
+        #play-bar {
+            position: relative;
+            height: 30px;
+            width: 150px;
+            border: 1px solid #CCCCCC;
+            margin-bottom: 12px;
+            margin-right: 60%;
+            background: #F7F7F7;
+        }
+
+        .bar-filler {
+            position: absolute;
+            height: inherit;
+            background: #33C3F0;
+            width: 0;
+        }
+
+        .bar-text-wrapper {
+            display: table;
+            position: absolute;
+            height: inherit;
+            width: inherit;
+            z-index: 10;
+        }
+
+        .bar-text {
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        #console .console-title {
+            padding: 0.5em;
+        }
+
+        #console .console-content {
+            padding-left: 1em;
+        }
+
+        #console .console-list, #files .files-list {
+            padding: 0;
+            margin: 0;
+        }
+
+        #console .console-item-title, #files .files-item-title {
+            text-align: center;
+            background-color: #CCCCCC;
+            border: 2px solid #CCCCCC;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        #console .console-item-title:hover, #files .files-item-title:hover {
+            border-color: #FFFF44;
+        }
+        #console .console-item-title.console-item-selected, #files .files-item-title.files-item-selected {
+            background-color: #FFFF44;
+            border-color: #FFFF44;
+        }
+
+        #console .console-item-body {
+            padding: 0 1em;
+        }
+
+        #files .files-title {
+            padding: 0.5em;
+        }
+        
+    </style>
+</head>
+<body>
+<div class="container" style="padding-top:12px;">
+    <div class="row">
+        <div class="twelve columns">
+            <h1>&#9836; Functional Music Notation Language</h1>
+
+            <h3>Type in a program here:</h3>
+            <div id="input-wrapper" style="height: 350px">
+                <div id="input" style="width:50%; margin: 0.3%; float:left; height:inherit; border:1px solid grey"></div>
+                <div id="console" style="width:30%; margin: 0.3%; float:left; height:inherit; border:1px solid grey;">
+                    <div class="console-title" style="border-bottom:1px solid grey">Console</div>
+                    <div class="console-main"></div>
+                </div>
+                <div id="files" style="width:17%; float:left; margin: 0.3%; height:inherit; border: 1px solid grey;">
+                    <div class="files-title" style="border-bottom:1px solid grey">Files</div>
+                    <div class="files-main"></div>
+                </div>
+            </div>
+            <p>
+                <button class="button" id="compile">Compile</button>
+                <input type="checkbox" id="auto-compile" name="auto-compile" />
+                <button class="button button-primary" id="play">Play</button>
+                <button class="button" id="stop">Stop</button>
+                <a id="downloadLink"><button class="button" id="download">Download</button></a>
+            </p>
+            <p id="error"></p>
+            <div id="play-bar">
+                <div class="bar-filler"></div>
+                <div class="bar-text-wrapper">
+                    <div class="bar-text"></div>
+                </div>
+            </div>
+            <div id="output">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    main();
+</script>
+</html>

@@ -1,0 +1,16 @@
+` Wrapper is the last type of ELEMENT.
+` They are simply ELEMENTs wrapped by [].
+function <wrapped>(1) = [123]
+
+` Recall functions are applied to notes and may completely change some structures.
+` For example:
+function <double>(1) = 11
+export function <no-wrap>(1) = <double>(123) ` = 112233
+
+` What if you don't want its structure to be changed? Use a wrapper!
+` Wrappers similar to notes when functions are applied.
+` It protects its inner structures.
+export function <wrap>(1) = <double>[123] ` = [123][123]
+
+` Similarly it's great to protect lists that serve as chords.
+export function <wrap2>(1) = ((1,3)[(3,5)])* ` = 1[(3,5)]3[(3,5)]

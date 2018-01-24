@@ -1,0 +1,17 @@
+`Piano sheet from http://www.mariopiano.com/mario-sheet-music-underworld-theme.html
+
+setting bpm = 200
+setting pitch = 46 ` Bb2
+
+function <p8>(X) = (X,/X)
+function <concat2>(X, Y) = (-XY)
+
+export function <main>(1) = </><p8>(
+    <concat2><p8>(
+        2\71 000 2\71 000
+        \5\3\4 000 \5\3\4 00
+    )(-t43b3)
+    24 3\b6 \5b3
+    (t-2b65 #4/17) (tb74#1 1\7\b7)
+    0----- 0-----
+)*
